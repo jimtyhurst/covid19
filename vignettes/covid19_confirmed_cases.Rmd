@@ -1,0 +1,44 @@
+---
+title: "COVID-19 Confirmed Cases"
+author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)"
+date: "`r Sys.Date()`"
+output:
+  github_document:
+    toc: true
+    hard_line_breaks: FALSE
+  html_document:
+    toc: true
+    code_folding: hide
+numbersections: true
+vignette: >
+  %\VignetteIndexEntry{Vignette Title}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+[Source code](./covid19_confirmed_cases.Rmd).
+
+## tl;dr
+
+```{r reads_and_plots, echo = FALSE, message = FALSE}
+library(covid19)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+confirmed_cases <- read_confirmed_cases()
+confirmed_cases %>%
+  dplyr::filter(province_state %in% c("California", "Colorado", "Oregon", "Washington")) %>% 
+  ggplot(aes(x = date, y = cumulative_total, group = province_state, color = province_state)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = cumulative_total), na.rm = TRUE) 
+
+```
+
