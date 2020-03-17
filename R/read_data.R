@@ -4,6 +4,7 @@ library(readr)
 library(tidyr)
 library(dplyr)
 library(lubridate)
+library(tidyselect)
 
 #' Reads cumulative total of COVID-19 cases.
 #'
@@ -18,25 +19,32 @@ library(lubridate)
 #'
 #' @export
 read_confirmed_cases <- function() {
-    confirmed_cases <- readr::read_csv(
-      "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
-      ) %>%
-      tidyr::pivot_longer(
-        cols = ends_with("/20"),
-        names_to = "date_chr",
-        values_to = "cumulative_total"
-      ) %>%
-      dplyr::mutate(
-        date = lubridate::mdy(date_chr),
-        cumulative_total = as.integer(cumulative_total)
-      ) %>%
-      dplyr::select(
-        country_region = `Country/Region`,
-        province_state = `Province/State`,
-        lat = `Lat`,
-        long = `Long`,
-        date,
-        cumulative_total
-      )
-    return(confirmed_cases)
+  # The source file is "wide" with one column per day.
+  # Those date column labels look like:
+  #   2/1/20  i.e. mm/dd/yy = Feb 1, 2020
+  date_as_column_name_format = "\\d\\d?/\\d\\d?/2\\d"
+
+  # We pivot the table to make it "long" with one
+  # observation per row.
+  confirmed_cases <- readr::read_csv(
+    "https://raw.githubusercontent.com/CSSEGISandData/COVID-19/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv"
+    ) %>%
+    tidyr::pivot_longer(
+      cols = tidyselect::matches(date_as_column_name_format),
+      names_to = "date_chr",
+      values_to = "cumulative_total"
+    ) %>%
+    dplyr::mutate(
+      date = lubridate::mdy(date_chr),
+      cumulative_total = as.integer(cumulative_total)
+    ) %>%
+    dplyr::select(
+      country_region = `Country/Region`,
+      province_state = `Province/State`,
+      lat = `Lat`,
+      long = `Long`,
+      date,
+      cumulative_total
+    )
+  return(confirmed_cases)
 }

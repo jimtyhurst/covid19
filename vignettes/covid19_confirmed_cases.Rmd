@@ -40,5 +40,6 @@ confirmed_cases %>%
     geom_point(na.rm = TRUE) +
     geom_line(aes(y = cumulative_total), na.rm = TRUE) 
 
+
 ```
 
