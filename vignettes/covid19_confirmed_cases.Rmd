@@ -27,19 +27,47 @@ knitr::opts_chunk$set(
 
 ## tl;dr
 
-```{r reads_and_plots, echo = FALSE, message = FALSE}
+```{r read_confirmed_cases, echo = FALSE, message = FALSE}
 library(covid19)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
 
 confirmed_cases <- read_confirmed_cases()
-confirmed_cases %>%
-  dplyr::filter(province_state %in% c("California", "Colorado", "Oregon", "Washington")) %>% 
-  ggplot(aes(x = date, y = cumulative_total, group = province_state, color = province_state)) +
-    geom_point(na.rm = TRUE) +
-    geom_line(aes(y = cumulative_total), na.rm = TRUE) 
-
-
 ```
 
+Plots cumulative number of confirmed cases for a few select states within the United States.
+
+```{r total_by_state_summary, echo = FALSE, message = FALSE}
+confirmed_cases %>%
+  dplyr::filter(province_state %in% c("California", "Colorado", "New York", "Oregon", "Washington")) %>% 
+  ggplot(aes(x = date, y = cumulative_total, group = province_state, color = province_state)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = cumulative_total), na.rm = TRUE)  + 
+  theme(
+    panel.grid.minor = element_line(color="grey60", size=0.5),
+    panel.grid.major = element_line(color="grey40", size=0.5),
+    panel.background = element_rect(fill="snow2")
+  ) +
+  ggtitle("Confirmed cases for selected states") +
+  labs(x = "Date", y = "Cumulative Total", color = "State")
+```
+
+Plots cumulative number of confirmed cases in China, Italy, Iran, Spain, South Korea, and United States.
+
+```{r total_by_country_summary, echo = FALSE, message = FALSE}
+confirmed_cases %>%
+  dplyr::filter(country_region %in% c("China", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
+  dplyr::group_by(country_region, date) %>% 
+  dplyr::summarize(country_total = sum(cumulative_total)) %>% 
+  ggplot(aes(x = date, y = country_total, group = country_region, color = country_region)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = country_total), na.rm = TRUE)  + 
+  theme(
+    panel.grid.minor = element_line(color="grey60", size=0.5),
+    panel.grid.major = element_line(color="grey40", size=0.5),
+    panel.background = element_rect(fill="snow2")
+  ) +
+  ggtitle("Confirmed cases for selected countries") +
+  labs(x = "Date", y = "Cumulative Total", color = "Country")
+```
