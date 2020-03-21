@@ -1,6 +1,6 @@
 ---
-title: "COVID-19 Confirmed Cases"
-author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)"
+title: "COVID-19 Deaths"
+author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)  "
 date: "`r Sys.Date()`"
 output:
   github_document:
@@ -23,23 +23,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-[Source code](./covid19_confirmed_cases.Rmd).
+[Source code](./covid19_deaths.Rmd).
 
 ## tl;dr
 
-```{r read_confirmed_cases, echo = FALSE, message = FALSE}
+```{r read_deaths, echo = FALSE, message = FALSE}
 library(covid19)
 library(dplyr)
 library(lubridate)
 library(ggplot2)
 
-confirmed_cases <- read_confirmed_cases()
+deaths <- read_deaths()
 ```
 
-Plots cumulative number of confirmed cases for a few select states in the western part of the United States.
+Plots cumulative number of deaths for a few select states in the western part of the United States.
 
 ```{r total_by_state_summary, echo = FALSE, message = FALSE}
-confirmed_cases %>%
+deaths %>%
   dplyr::filter(province_state %in% c("Arizona", "California", "Colorado", "Oregon", "Washington")) %>% 
   ggplot(aes(x = date, y = cumulative_total, group = province_state, color = province_state)) +
     geom_point(na.rm = TRUE) +
@@ -49,14 +49,14 @@ confirmed_cases %>%
     panel.grid.major = element_line(color="grey40", size=0.5),
     panel.background = element_rect(fill="snow2")
   ) +
-  ggtitle("Confirmed cases in a few western states") +
+  ggtitle("Deaths in a few western states") +
   labs(x = "Date", y = "Cumulative Total", color = "State")
 ```
 
-Plots cumulative number of confirmed cases in China, Italy, Iran, Spain, South Korea, and United States. New cases have already leveled off in China and South Korea, but new cases are still increasing in the other countries.
+Plots cumulative number of deaths in China, Italy, Iran, Spain, South Korea, and United States. New cases have already leveled off in China and South Korea, but new cases are still increasing in the other countries.
 
 ```{r total_by_country_summary, echo = FALSE, message = FALSE}
-confirmed_cases %>%
+deaths %>%
   dplyr::filter(country_region %in% c("China", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
   dplyr::group_by(country_region, date) %>% 
   dplyr::summarize(country_total = sum(cumulative_total)) %>% 
@@ -68,6 +68,6 @@ confirmed_cases %>%
     panel.grid.major = element_line(color="grey40", size=0.5),
     panel.background = element_rect(fill="snow2")
   ) +
-  ggtitle("Confirmed cases for selected countries") +
+  ggtitle("Deaths for selected countries") +
   labs(x = "Date", y = "Cumulative Total", color = "Country")
 ```

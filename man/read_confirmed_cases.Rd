@@ -7,14 +7,14 @@
 read_confirmed_cases()
 }
 \value{
-tbl with 6 columns: ("country_region", "province_state", "lat", "long", "date", "cumulative_total")
+\code{tbl} with 6 columns: \code{country_region}, \code{province_state}, \code{lat}, \code{long}, \code{date}, \code{cumulative_total}. Most of the country data, except for China and United States, is not sub-divided by \code{province_state}, so that column has many \code{NA} values.
 }
 \description{
 Reads cumulative total of COVID-19 confirmed cases by day from a public dataset published by Johns Hopkins University (JHU).
 }
 \details{
 \itemize{
-\item Reads a \href{https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv}{JHU CSSE data file} of confirmed \href{https://www.who.int/emergencies/diseases/novel-coronavirus-2019}{COVID-19} cases.
+\item Reads a \href{https://github.com/CSSEGISandData/COVID-19}{JHU CSSE} data file, \href{https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_19-covid-Confirmed.csv}{time_series_19-covid-Confirmed.csv} of confirmed \href{https://www.who.int/emergencies/diseases/novel-coronavirus-2019}{COVID-19} cases.
 \item Reformats data as a \href{https://r4ds.had.co.nz/tidy-data.html}{tidy dataset}.
 \item Reformats the column names to \href{https://en.wikipedia.org/wiki/Snake_case}{snake case}.
 }
