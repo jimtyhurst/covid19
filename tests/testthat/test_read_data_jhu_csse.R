@@ -1,6 +1,8 @@
-
+library(dplyr)
+library(lubridate)
 library(testthat)
-context("Reading COVID-19 case data")
+
+context("Reading COVID-19 case data from JHU CSSE")
 
 test_that("Expected columns are present for confirmed cases", {
   expected_columns <- c(

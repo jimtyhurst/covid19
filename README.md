@@ -9,16 +9,36 @@ This `covid19` package provides an [R](https://www.r-project.org/) API for acces
 
 ## Installation
 
-Install the development version of `covid19` from [GitHub](https://github.com/) with:
+There are no plans to created a release version. Install the development version of `covid19` from [GitHub](https://github.com/) with:
 
 ``` r
 # install.packages("remotes")
 remotes::install_github("jimtyhurst/covid19")
 ```
 
-There are no plans to created a release version.
+## Example for ECDC data
 
-## Example
+`read_cases_ecdc()`:
+
+* Reads a European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)) [dataset](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) of [COVID-19](https://www.who.int/emergencies/diseases/novel-coronavirus-2019) cases and deaths.
+* Adds a `date` column of class `Date`, derived from the original `dateRep` column, which is a string.
+
+``` r
+library(covid19)
+df <- covid19::read_cases_ecdc()
+
+# Number of rows depends on the day that the data is downloaded,
+# because the dataset is updated daily.
+dim(df)
+# [1] 7515   11
+colnames(df)
+ [1] "dateRep"                 "day"                     "month"                  
+ [4] "year"                    "cases"                   "deaths"                 
+ [7] "countriesAndTerritories" "geoId"                   "countryterritoryCode"   
+[10] "popData2018"             "date"
+```
+
+## Example for CSSE data
 
 `read_confirmed_cases_jhu_csse()`:
 
