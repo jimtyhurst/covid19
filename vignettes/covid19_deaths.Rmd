@@ -33,24 +33,7 @@ library(dplyr)
 library(lubridate)
 library(ggplot2)
 
-deaths <- read_deaths()
-```
-
-Plots cumulative number of deaths for a few select states in the western part of the United States.
-
-```{r total_by_state_summary, echo = FALSE, message = FALSE}
-deaths %>%
-  dplyr::filter(province_state %in% c("Arizona", "California", "Colorado", "Oregon", "Washington")) %>% 
-  ggplot(aes(x = date, y = cumulative_total, group = province_state, color = province_state)) +
-    geom_point(na.rm = TRUE) +
-    geom_line(aes(y = cumulative_total), na.rm = TRUE)  + 
-  theme(
-    panel.grid.minor = element_line(color="grey60", size=0.5),
-    panel.grid.major = element_line(color="grey40", size=0.5),
-    panel.background = element_rect(fill="snow2")
-  ) +
-  ggtitle("Deaths in a few western states") +
-  labs(x = "Date", y = "Cumulative Total", color = "State")
+deaths <- read_deaths_jhu_csse()
 ```
 
 Plots cumulative number of deaths in China, Italy, Iran, Spain, South Korea, and United States. New cases have already leveled off in China and South Korea, but new cases are still increasing in the other countries.
