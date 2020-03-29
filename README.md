@@ -3,7 +3,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-This `covid19` package provides an [R](https://www.r-project.org/) API for accessing [COVID-19 data](https://github.com/CSSEGISandData/COVID-19) published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)).
+This `covid19` package provides an [R](https://www.r-project.org/) API for accessing:
+
+* COVID-19 time series [cases and deaths](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) published by the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)). They combine cases and deaths in a single file.
+* COVID-19 [time series](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series) data published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)). They have separate files for confirmed cases and deaths.
 
 [Vignettes](./vignettes) demonstrate how to use this API by providing simple visualizations of the data.
 
