@@ -2,9 +2,9 @@
 
 This `covid19` package provides an [R](https://www.r-project.org/) API for accessing:
 
-* COVID-19 time series of [cases and deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) by state, published by the [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html).
-* COVID-19 time series of [cases and deaths](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) by country, published by the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)). They combine cases and deaths in a single file.
-* COVID-19 [time series](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series) data by country, published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)). They have separate files for confirmed cases and deaths.
+* COVID-19 time series of [cases and deaths by state](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv), published by the [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html).
+* COVID-19 time series of [cases and deaths by country](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide), published by the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)). They combine cases and deaths in a single file.
+* COVID-19 time series of [cases and deaths by country](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series), published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)). They have separate files for confirmed cases and deaths.
 
 [Vignettes](./vignettes) demonstrate how to use this API by providing simple visualizations of the data.
 
@@ -84,3 +84,11 @@ Licensed under the Apache License, Version 2.0 (the "License"); you may not use 
        [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+
+## Resources
+* World Health Organization (WHO): [Coronavirus disease 2019](https://www.who.int/emergencies/diseases/novel-coronavirus-2019)
+* United States Centers for Disease Control and Prevention (CDC): [Coronavirus](https://www.cdc.gov/coronavirus/2019-nCoV/index.html) (COVID-19)
+* European Centre for Disease Prevention and Control (ECDC): [COVID-19](https://www.ecdc.europa.eu/en/novel-coronavirus-china)
+* Johns Hopkins University Center for Systems Science and Engineering:
+    * [Mapping 2019-nCoV](https://systems.jhu.edu/research/public-health/ncov/)
+    * [Coronavirus COVID-19 Global Cases](https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
