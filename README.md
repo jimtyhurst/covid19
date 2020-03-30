@@ -94,7 +94,7 @@ colnames(confirmed_cases)
 `read_deaths_jhu_csse()`:
 
 * Reads a [JHU CSSE data file](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) of COVID-19 deaths by country.
-* Reformats data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
+* Reformats the data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
 * Reformats the column names to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 
 ``` r
@@ -115,7 +115,7 @@ Copyright &copy; 2020 Jim Tyhurst
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
-       [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
+[http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
 
@@ -124,5 +124,5 @@ Unless required by applicable law or agreed to in writing, software distributed 
 * United States Centers for Disease Control and Prevention (CDC): [Coronavirus (COVID-19)](https://www.cdc.gov/coronavirus/2019-nCoV/index.html)
 * European Centre for Disease Prevention and Control (ECDC): [COVID-19](https://www.ecdc.europa.eu/en/novel-coronavirus-china)
 * Johns Hopkins University Center for Systems Science and Engineering:
-    * [Mapping 2019-nCoV](https://systems.jhu.edu/research/public-health/ncov/)
     * [Coronavirus COVID-19 Global Cases](https://www.arcgis.com/apps/opsdashboard/index.html#/bda7594740fd40299423467b48e9ecf6)
+    * [Mapping 2019-nCoV](https://systems.jhu.edu/research/public-health/ncov/)
