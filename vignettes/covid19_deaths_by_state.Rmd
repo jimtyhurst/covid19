@@ -84,7 +84,8 @@ cases %>%
   dplyr::arrange(desc(pct)) %>% 
   ggplot(mapping = aes(x = state, y = pct)) +
     geom_col() +
-    theme(axis.text.x = element_text(angle = 90))
+    theme(axis.text.x = element_text(angle = 90)) +
+    labs(x = "State", y = "Percentage of deaths for confirmed cases")
 ```
 
 ## Distribution of mortality rates
@@ -98,6 +99,6 @@ cases %>%
   dplyr::mutate(pct_bin = floor(pct)) %>% 
   ggplot(aes(x = pct_bin, y = stat(count))) +
     geom_bar() +
-    ggtitle("Mortality rates in states in the United States") +
+    ggtitle("Distribution of mortality rates in states in the United States") +
     labs(x = "Percentage of deaths for confirmed cases", y = "Number of states")
 ```
