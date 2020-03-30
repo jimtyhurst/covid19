@@ -8,6 +8,15 @@ This `covid19` package provides an [R](https://www.r-project.org/) API for acces
 
 [Vignettes](./vignettes) demonstrate how to use this API by providing simple visualizations of the data.
 
+**Contents**
+
+* [Installation](#installation)
+* [Example for NY Times data](#example-for-ny-times-data)
+* [Example for ECDC data](#Example for ECDC data)
+* [Example for JHU CSSE data](#example-for-jhu-csse-data)
+* [License](#license)
+* [Resources](#resources)
+
 ## Installation
 
 There are no plans to created a release version. Install the _development_ version of `covid19` from [GitHub](https://github.com/) with:
@@ -55,7 +64,7 @@ colnames(df)
 [10] "popData2018"             "date"
 ```
 
-## Example for CSSE data
+## Example for JHU CSSE data
 
 `read_confirmed_cases_jhu_csse()`:
 
@@ -87,7 +96,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ## Resources
 * World Health Organization (WHO): [Coronavirus disease 2019](https://www.who.int/emergencies/diseases/novel-coronavirus-2019)
-* United States Centers for Disease Control and Prevention (CDC): [Coronavirus](https://www.cdc.gov/coronavirus/2019-nCoV/index.html) (COVID-19)
+* United States Centers for Disease Control and Prevention (CDC): [Coronavirus (COVID-19)](https://www.cdc.gov/coronavirus/2019-nCoV/index.html)
 * European Centre for Disease Prevention and Control (ECDC): [COVID-19](https://www.ecdc.europa.eu/en/novel-coronavirus-china)
 * Johns Hopkins University Center for Systems Science and Engineering:
     * [Mapping 2019-nCoV](https://systems.jhu.edu/research/public-health/ncov/)
