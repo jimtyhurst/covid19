@@ -2,26 +2,25 @@
 
 This `covid19` package provides an [R](https://www.r-project.org/) API for accessing:
 
-* COVID-19 time series [cases and deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) by state published by the [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html).
-* COVID-19 time series [cases and deaths](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) by country published by the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)). They combine cases and deaths in a single file.
-* COVID-19 [time series](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series) data by country published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)). They have separate files for confirmed cases and deaths.
+* COVID-19 time series of [cases and deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) by state, published by the [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html).
+* COVID-19 time series of [cases and deaths](https://www.ecdc.europa.eu/en/publications-data/download-todays-data-geographic-distribution-covid-19-cases-worldwide) by country, published by the European Centre for Disease Prevention and Control ([ECDC](https://www.ecdc.europa.eu/)). They combine cases and deaths in a single file.
+* COVID-19 [time series](https://github.com/CSSEGISandData/COVID-19/tree/master/csse_covid_19_data/csse_covid_19_time_series) data by country, published by [Johns Hopkins University](https://www.jhu.edu/) Center for Systems Science and Engineering (JHU [CSSE](https://systems.jhu.edu/)). They have separate files for confirmed cases and deaths.
 
 [Vignettes](./vignettes) demonstrate how to use this API by providing simple visualizations of the data.
 
 ## Installation
 
-There are no plans to created a release version. Install the development version of `covid19` from [GitHub](https://github.com/) with:
+There are no plans to created a release version. Install the _development_ version of `covid19` from [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
 remotes::install_github("jimtyhurst/covid19")
 ```
 
 ## Example for NY Times data
 
-`read_cases_ecdc()`:
+`read_state_cases_nytimes()`:
 
-* Reads a [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html) [dataset](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) of [COVID-19](https://www.who.int/emergencies/diseases/novel-coronavirus-2019) cases and deaths by state.
+* Reads a [NY Times](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html) dataset of COVID-19 [cases and deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) by state.
 
 ``` r
 library(covid19)
