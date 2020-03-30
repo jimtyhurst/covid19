@@ -1,0 +1,103 @@
+---
+title: "COVID-19 Deaths by State"
+author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)"
+date: "`r Sys.Date()`"
+output:
+  github_document:
+    toc: true
+    hard_line_breaks: FALSE
+  html_document:
+    toc: true
+    code_folding: hide
+numbersections: true
+vignette: >
+  %\VignetteIndexEntry{COVID_19_Deaths_by_State}
+  %\VignetteEncoding{UTF-8}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+[Source code](./covid19_deaths_by_state.Rmd).
+
+## Read data
+
+```{r read_state_cases, echo = FALSE, message = FALSE}
+library(covid19)
+library(dplyr)
+library(lubridate)
+library(ggplot2)
+
+cases <- read_state_cases_nytimes()
+```
+
+## Cases by state
+Plot of cumulative number of cases by state in the United States for a few select states.
+
+```{r cases_by_state, echo = FALSE, message = FALSE}
+cases %>%
+  dplyr::filter(state %in% c("California", "Colorado", "Oregon", "Washington"), date > lubridate::ymd("2020-02-20")) %>% 
+  ggplot(aes(x = date, y = cases, color = state)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = cases), na.rm = TRUE)  + 
+  theme(
+    panel.grid.minor = element_line(color="grey60", size=0.5),
+    panel.grid.major = element_line(color="grey40", size=0.5),
+    panel.background = element_rect(fill="snow2")
+  ) +
+  ggtitle("Confirmed cases of COVID-19 for selected western states in the United States") +
+  labs(x = "Date", y = "Cases", color = "State")
+```
+
+## Deaths by state
+Plot of quantity of deaths per state in the United States for a few select states.
+
+```{r deaths_by_state, echo = FALSE, message = FALSE}
+cases %>%
+  dplyr::filter(state %in% c("California", "Colorado", "Oregon", "Washington"), date > lubridate::ymd("2020-02-20")) %>% 
+  ggplot(aes(x = date, y = deaths, color = state)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = deaths), na.rm = TRUE)  + 
+  theme(
+    panel.grid.minor = element_line(color="grey60", size=0.5),
+    panel.grid.major = element_line(color="grey40", size=0.5),
+    panel.background = element_rect(fill="snow2")
+  ) +
+  ggtitle("Deaths from COVID-19 for selected western states in the United States") +
+  labs(x = "Date", y = "Deaths", color = "State")
+```
+
+## Mortality by state
+Plot of percentage of deaths per state, calculated as (deaths / cases) * 100.
+
+```{r mortality_by_state, echo = FALSE, message = FALSE}
+latest_date <- max(cases$date)
+cases %>% 
+  dplyr::filter(date == latest_date) %>% 
+  dplyr::mutate(pct = ((deaths / cases) * 100.0)) %>% 
+  dplyr::arrange(desc(pct)) %>% 
+  ggplot(mapping = aes(x = state, y = pct)) +
+    geom_col() +
+    theme(axis.text.x = element_text(angle = 90))
+```
+
+## Distribution of mortality rates
+Plot of mortality rates across states, i.e. percentage of deaths for confirmed cases, in the United States.
+
+```{r mortality_distribution, echo = FALSE, message = FALSE}
+latest_date <- max(cases$date)
+cases %>% 
+  dplyr::filter(date == latest_date) %>% 
+  dplyr::mutate(pct = ((deaths / cases) * 100.0)) %>% 
+  dplyr::mutate(pct_bin = floor(pct)) %>% 
+  ggplot(aes(x = pct_bin, y = stat(count))) +
+    geom_bar() +
+    ggtitle("Mortality rates in states in the United States") +
+    labs(x = "Percentage of deaths for confirmed cases", y = "Number of states")
+```
