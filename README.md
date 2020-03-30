@@ -14,7 +14,7 @@ This `covid19` package provides an [R](https://www.r-project.org/) API for acces
 
 * [Installation](#installation)
 * [Example for NY Times data](#example-for-ny-times-data)
-* [Example for ECDC data](#Example for ECDC data)
+* [Example for ECDC data](#example-for-ecdc-data)
 * [Example for JHU CSSE data](#example-for-jhu-csse-data)
 * [License](#license)
 * [Resources](#resources)
