@@ -15,7 +15,7 @@ This `covid19` package provides an [R](https://www.r-project.org/) API for acces
 * [Installation](#installation)
 * [Example for NY Times data](#example-for-ny-times-data)
 * [Example for ECDC data](#example-for-ecdc-data)
-* [Example for JHU CSSE data](#example-for-jhu-csse-data)
+* [Examples for JHU CSSE data](#examples-for-jhu-csse-data)
 * [License](#license)
 * [Resources](#resources)
 
@@ -68,12 +68,12 @@ colnames(df)
 [10] "popData2018"             "date"
 ```
 
-## Example for JHU CSSE data
+## Examples for JHU CSSE data
 
 `read_confirmed_cases_jhu_csse()`:
 
-* Reads a [JHU CSSE data file](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv) of confirmed [COVID-19](https://www.who.int/emergencies/diseases/novel-coronavirus-2019) cases.
-* Reformats data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
+* Reads a [JHU CSSE data file](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_confirmed_global.csv) of confirmed [COVID-19](https://www.who.int/emergencies/diseases/novel-coronavirus-2019) cases by country.
+* Reformats the data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
 * Reformats the column names to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 
 ``` r
@@ -83,10 +83,31 @@ confirmed_cases <- covid19::read_confirmed_cases_jhu_csse()
 # Number of rows depends on the day that the data is downloaded,
 # because the dataset is updated daily.
 dim(confirmed_cases)
-# [1] 16951     6
+# [1] 17204     6
 colnames(confirmed_cases)
-# [1] "country_region"   "province_state"   "lat"              "long"            
-# [5] "date"             "cumulative_total"
+# [1] "country_region"   "province_state"   "lat"             
+# [4] "long"             "date"             "cumulative_total"
+```
+
+---
+
+`read_deaths_jhu_csse()`:
+
+* Reads a [JHU CSSE data file](https://github.com/CSSEGISandData/COVID-19/blob/master/csse_covid_19_data/csse_covid_19_time_series/time_series_covid19_deaths_global.csv) of COVID-19 deaths by country.
+* Reformats data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
+* Reformats the column names to [snake case](https://en.wikipedia.org/wiki/Snake_case).
+
+``` r
+library(covid19)
+deaths <- covid19::read_deaths_jhu_csse()
+
+# Number of rows depends on the day that the data is downloaded,
+# because the dataset is updated daily.
+dim(deaths)
+# [1] 17204     6
+colnames(deaths)
+# [1] "country_region"   "province_state"   "lat"             
+# [4] "long"             "date"             "cumulative_total"
 ```
 
 ## License
