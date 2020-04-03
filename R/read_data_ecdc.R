@@ -11,17 +11,18 @@
 #' * Adds a `date` column of class `Date`, derived from the `dateRep` column, which is a string.
 #'
 #' @return `tbl` with 11 columns:
-#' * `date`
-#' * `dateRep`
-#' * `day`
-#' * `month`
-#' * `year`
-#' * `cases`
-#' * `deaths`
-#' * `countriesAndTerritories`
-#' * `geoId`
-#' * `countryterritoryCode`
-#' * `popData2018`
+#' * `date` : (Date)
+#' * `dateRep` : (character)
+#' * `day` : (integer)
+#' * `month` : (integer)
+#' * `year` : (integer)
+#' * `cases` : (integer)
+#' * `deaths` : (integer) number of new deaths that occurred on the given day.
+#'     This is _not_ the cumulative total of deaths up to that day.
+#' * `countriesAndTerritories` : (character)
+#' * `geoId` : (character) 2-character ISO-3166 country code.
+#' * `countryterritoryCode` : (character) 3-character ISO-3166 country code.
+#' * `popData2018` : (integer)
 #'
 #' @import httr
 #' @import readr

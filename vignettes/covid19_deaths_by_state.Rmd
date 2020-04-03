@@ -27,6 +27,7 @@ knitr::opts_chunk$set(
 [Source code](./covid19_deaths_by_state.Rmd).
 
 ## Read data
+Reads a NY Times [dataset](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html) of COVID-19 [cases and deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv) by state.
 
 ```{r read_state_cases, echo = FALSE, message = FALSE}
 library(covid19)
@@ -35,6 +36,7 @@ library(lubridate)
 library(ggplot2)
 
 cases <- read_state_cases_nytimes()
+states_to_compare <- c("Arizona", "California", "Colorado", "Idaho", "Nevada", "Oregon", "Washington")
 ```
 
 ## Cases by state
@@ -42,7 +44,7 @@ Plot of cumulative number of cases by state in the United States for a few selec
 
 ```{r cases_by_state, echo = FALSE, message = FALSE}
 cases %>%
-  dplyr::filter(state %in% c("California", "Colorado", "Oregon", "Washington"), date > lubridate::ymd("2020-02-20")) %>% 
+  dplyr::filter(state %in% states_to_compare, date > lubridate::ymd("2020-02-20")) %>% 
   ggplot(aes(x = date, y = cases, color = state)) +
     geom_point(na.rm = TRUE) +
     geom_line(aes(y = cases), na.rm = TRUE)  + 
@@ -60,7 +62,7 @@ Plot of quantity of deaths per state in the United States for a few select state
 
 ```{r deaths_by_state, echo = FALSE, message = FALSE}
 cases %>%
-  dplyr::filter(state %in% c("California", "Colorado", "Oregon", "Washington"), date > lubridate::ymd("2020-02-20")) %>% 
+  dplyr::filter(state %in% states_to_compare, date > lubridate::ymd("2020-02-20")) %>% 
   ggplot(aes(x = date, y = deaths, color = state)) +
     geom_point(na.rm = TRUE) +
     geom_line(aes(y = deaths), na.rm = TRUE)  + 

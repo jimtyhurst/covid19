@@ -9,7 +9,17 @@
 #' * Reformats data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
 #' * Reformats the column names to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 #'
-#' @return `tbl` with 6 columns: `country_region`, `province_state`, `lat`, `long`, `date`, `cumulative_total`. Note: The country data for the United States and most other countries is _not_ sub-divided by `province_state`, so that column has many `NA` values.
+#' @return `tbl` with 6 columns:
+#' * `country_region` : (character)
+#' * `province_state` : (character)
+#' * `lat` : (numeric) latitude
+#' * `long` : (numeric) longitude
+#' * `date` : (Date)
+#' * `cumulative_total` : (integer) total number of confirmed cases that occurred
+#'     up to and including the given date.
+#'
+#' Note: The country data for the United States and most other countries
+#'     is _not_ sub-divided by `province_state`, so that column has many `NA` values.
 #'
 #' @import readr
 #' @import tidyr
@@ -59,7 +69,17 @@ read_confirmed_cases_jhu_csse <- function() {
 #' * Reformats data as a [tidy dataset](https://r4ds.had.co.nz/tidy-data.html).
 #' * Reformats the column names to [snake case](https://en.wikipedia.org/wiki/Snake_case).
 #'
-#' @return `tbl` with 6 columns: `country_region`, `province_state`, `lat`, `long`, `date`, `cumulative_total`. Note: The country data for the United States and most other countries is _not_ sub-divided by `province_state`, so that column has many `NA` values.
+#' @return `tbl` with 6 columns:
+#' * `country_region` : (character)
+#' * `province_state` : (character)
+#' * `lat` : (numeric) latitude
+#' * `long` : (numeric) longitude
+#' * `date` : (Date)
+#' * `cumulative_total` : (integer) total number of deaths that occurred
+#'     up to and including the given date.
+#'
+#' Note: The country data for the United States and most other countries
+#'     is _not_ sub-divided by `province_state`, so that column has many `NA` values.
 #'
 #' @import readr
 #' @import tidyr

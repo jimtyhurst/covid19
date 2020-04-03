@@ -1,7 +1,7 @@
 COVID-19 Deaths
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-04-01
+2020-04-02
 
   - [tl;dr](#tldr)
 

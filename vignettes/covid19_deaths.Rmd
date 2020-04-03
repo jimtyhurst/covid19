@@ -37,11 +37,11 @@ library(ggplot2)
 deaths <- read_deaths_jhu_csse()
 ```
 
-Plots cumulative number of deaths in China, Italy, Iran, Spain, South Korea, and United States. New cases have already leveled off in China and South Korea, but new cases are still increasing in the other countries.
+Plots cumulative number of confirmed cases for a few selected countries. It is easy to tell by the shape of the curve whether the daily number of cases are increasing vs countries where the rate of deaths has decreased.
 
 ```{r total_by_country_summary, echo = FALSE, message = FALSE}
 deaths %>%
-  dplyr::filter(country_region %in% c("China", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
+  dplyr::filter(country_region %in% c("Czechia", "China", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
   dplyr::group_by(country_region, date) %>% 
   dplyr::summarize(country_total = sum(cumulative_total)) %>% 
   ggplot(aes(x = date, y = country_total, group = country_region, color = country_region)) +

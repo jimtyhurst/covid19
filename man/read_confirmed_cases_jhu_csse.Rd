@@ -7,7 +7,19 @@
 read_confirmed_cases_jhu_csse()
 }
 \value{
-\code{tbl} with 6 columns: \code{country_region}, \code{province_state}, \code{lat}, \code{long}, \code{date}, \code{cumulative_total}. Note: The country data for the United States and most other countries is \emph{not} sub-divided by \code{province_state}, so that column has many \code{NA} values.
+\code{tbl} with 6 columns:
+\itemize{
+\item \code{country_region} : (character)
+\item \code{province_state} : (character)
+\item \code{lat} : (numeric) latitude
+\item \code{long} : (numeric) longitude
+\item \code{date} : (Date)
+\item \code{cumulative_total} : (integer) total number of confirmed cases that occurred
+up to and including the given date.
+}
+
+Note: The country data for the United States and most other countries
+is \emph{not} sub-divided by \code{province_state}, so that column has many \code{NA} values.
 }
 \description{
 Reads cumulative total of COVID-19 confirmed cases by day from a public dataset published by Johns Hopkins University (JHU).
