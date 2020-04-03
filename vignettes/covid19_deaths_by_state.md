@@ -1,7 +1,7 @@
 COVID-19 Deaths by State
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-04-02
+2020-04-03
 
   - [Read data](#read-data)
   - [Cases by state](#cases-by-state)
