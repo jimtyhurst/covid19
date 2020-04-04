@@ -1,7 +1,7 @@
 COVID-19 Deaths by State
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-04-01
+2020-04-03
 
   - [Read data](#read-data)
   - [Cases by state](#cases-by-state)
@@ -12,6 +12,12 @@ COVID-19 Deaths by State
 [Source code](./covid19_deaths_by_state.Rmd).
 
 ## Read data
+
+Reads a NY Times
+[dataset](https://www.nytimes.com/interactive/2020/us/coronavirus-us-cases.html)
+of COVID-19 [cases and
+deaths](https://github.com/nytimes/covid-19-data/blob/master/us-states.csv)
+by state.
 
 ## Cases by state
 

@@ -9,17 +9,18 @@ read_cases_ecdc()
 \value{
 \code{tbl} with 11 columns:
 \itemize{
-\item \code{date}
-\item \code{dateRep}
-\item \code{day}
-\item \code{month}
-\item \code{year}
-\item \code{cases}
-\item \code{deaths}
-\item \code{countriesAndTerritories}
-\item \code{geoId}
-\item \code{countryterritoryCode}
-\item \code{popData2018}
+\item \code{date} : (Date)
+\item \code{dateRep} : (character)
+\item \code{day} : (integer)
+\item \code{month} : (integer)
+\item \code{year} : (integer)
+\item \code{cases} : (integer)
+\item \code{deaths} : (integer) number of new deaths that occurred on the given day.
+This is \emph{not} the cumulative total of deaths up to that day.
+\item \code{countriesAndTerritories} : (character)
+\item \code{geoId} : (character) 2-character ISO-3166 country code.
+\item \code{countryterritoryCode} : (character) 3-character ISO-3166 country code.
+\item \code{popData2018} : (integer)
 }
 }
 \description{
