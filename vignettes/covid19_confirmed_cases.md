@@ -1,7 +1,7 @@
 COVID-19 Confirmed Cases
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-04-03
+2020-04-05
 
   - [tl;dr](#tldr)
 
