@@ -6,7 +6,7 @@ Authors@R:
            family = "Tyhurst",
            role = c("aut", "cre"),
            email = "jim@jimtyhurst.com",
-           comment = c(ORCID = "YOUR-ORCID-ID"))
+           comment = c(ORCID = "0000-0001-7494-3632"))
 Description: Visualizations of COVID-19 data obtained from the
     Center for Systems Science and Engineering at Johns Hopkins
     University.
