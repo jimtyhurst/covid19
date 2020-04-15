@@ -23,11 +23,13 @@ This `covid19` package provides an [R](https://www.r-project.org/) API for acces
 
 ## Installation
 
-There are no plans to created a release version. Install the _development_ version of `covid19` from [GitHub](https://github.com/) with:
+Install the _development_ version of `covid19` from [GitHub](https://github.com/) with:
 
 ``` r
 remotes::install_github("jimtyhurst/covid19")
 ```
+
+There are no plans to created a released version on [CRAN](https://cran.r-project.org/) or any other repository of published packages. 
 
 ## Example for NY Times data
 

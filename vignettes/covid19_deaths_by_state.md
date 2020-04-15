@@ -1,7 +1,7 @@
 COVID-19 Deaths by State
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-04-05
+2020-04-15
 
   - [Read data](#read-data)
   - [Cases by state](#cases-by-state)
@@ -38,11 +38,17 @@ select states.
 Plot of percentage of deaths per state, calculated as (deaths / cases)
 \* 100.
 
+    #> Warning: Removed 1 rows containing missing values
+    #> (position_stack).
+
 ![](covid19_deaths_by_state_files/figure-gfm/mortality_by_state-1.png)<!-- -->
 
 ## Distribution of mortality rates
 
 Plot of mortality rates across states, i.e. percentage of deaths for
 confirmed cases, in the United States.
+
+    #> Warning: Removed 1 rows containing non-finite values
+    #> (stat_count).
 
 ![](covid19_deaths_by_state_files/figure-gfm/mortality_distribution-1.png)<!-- -->
