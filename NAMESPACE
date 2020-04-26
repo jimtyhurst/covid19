@@ -2,10 +2,13 @@
 
 export(get_ecdc_col_types)
 export(get_nytimes_state_col_types)
+export(get_state_populations_col_types)
 export(read_cases_ecdc)
 export(read_confirmed_cases_jhu_csse)
 export(read_deaths_jhu_csse)
 export(read_state_cases_nytimes)
+export(read_state_populations)
+import(dplyr)
 import(httr)
 import(readr)
 import(tidyr)
