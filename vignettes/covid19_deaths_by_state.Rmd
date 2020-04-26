@@ -33,36 +33,97 @@ Reads a NY Times [dataset](https://www.nytimes.com/interactive/2020/us/coronavir
 library(covid19)
 library(dplyr)
 library(lubridate)
+library(glue)
 library(ggplot2)
 
-cases <- read_state_cases_nytimes()
-states_to_compare <- c("Arizona", "California", "Colorado", "Idaho", "Nevada", "Oregon", "Washington")
+state_populations <-
+  read_state_populations() %>% 
+  select(state = state_name, population = population_estimate)
+cases <- 
+  read_state_cases_nytimes() %>% 
+  dplyr::left_join(state_populations, by = "state")
+states_to_compare <- c(
+  "Arizona", 
+  "California", 
+  "Colorado", 
+  "Idaho", 
+  "Nevada", 
+  "Oregon", 
+  "Washington"
+)
 ```
 
 ## Cases by state
+
+### Cumulative number of cases
 Plot of cumulative number of cases by state in the United States for a few select states.
 
 ```{r cases_by_state, echo = FALSE, message = FALSE}
 cases %>%
-  dplyr::filter(state %in% states_to_compare, date > lubridate::ymd("2020-02-20")) %>% 
+  dplyr::filter(
+    state %in% states_to_compare, 
+    date > lubridate::ymd("2020-02-20")
+  ) %>% 
   ggplot(aes(x = date, y = cases, color = state)) +
     geom_point(na.rm = TRUE) +
     geom_line(aes(y = cases), na.rm = TRUE)  + 
+    theme(
+      panel.grid.minor = element_line(color="grey60", size=0.5),
+      panel.grid.major = element_line(color="grey40", size=0.5),
+      panel.background = element_rect(fill="snow2")
+    ) +
+    labs(
+      title = "Confirmed cases of COVID-19",
+      subtitle = "for selected western states in the United States",
+      x = "Date", 
+      y = "Cases", 
+      color = "State"
+    )
+```
+
+### Cumulative cases per comparable unit of population
+```{r cases_by_state_per_unit, echo = FALSE, message = FALSE}
+population_unit = 100000
+cases %>%
+  dplyr::filter(
+    state %in% states_to_compare,
+    date > lubridate::ymd("2020-02-20")) %>%
+  dplyr::mutate(cases_per_unit = ((cases / population) * population_unit)) %>%
+  ggplot(aes(x = date, y = cases_per_unit, color = state)) +
+  geom_point(na.rm = TRUE) +
+  geom_line(aes(y = cases_per_unit), na.rm = TRUE)  +
   theme(
-    panel.grid.minor = element_line(color="grey60", size=0.5),
-    panel.grid.major = element_line(color="grey40", size=0.5),
-    panel.background = element_rect(fill="snow2")
+    panel.grid.minor = element_line(color = "grey60", size = 0.5),
+    panel.grid.major = element_line(color = "grey40", size = 0.5),
+    panel.background = element_rect(fill = "snow2")
   ) +
-  ggtitle("Confirmed cases of COVID-19 for selected western states in the United States") +
-  labs(x = "Date", y = "Cases", color = "State")
+  labs(
+    title = glue(
+      "Cumulative cases per ",
+      format(population_unit, scientific=FALSE, big.mark=","),
+      " population from COVID-19"
+    ),
+    subtitle = "for selected western states in the United States",
+    x = "Date", 
+    y = glue(
+      "Cumulative Cases per ", 
+      format(population_unit, scientific=FALSE, big.mark=",")
+    ), 
+    color = "State"
+  )
 ```
 
 ## Deaths by state
-Plot of quantity of deaths per state in the United States for a few select states.
+
+### Cumulative deaths by state
+Plot of cumulative number of deaths per state in the United States for a few select states.
 
 ```{r deaths_by_state, echo = FALSE, message = FALSE}
 cases %>%
-  dplyr::filter(state %in% states_to_compare, date > lubridate::ymd("2020-02-20")) %>% 
+  dplyr::filter(
+    state %in% states_to_compare, 
+    date > lubridate::ymd("2020-02-20")
+  ) %>% 
   ggplot(aes(x = date, y = deaths, color = state)) +
     geom_point(na.rm = TRUE) +
     geom_line(aes(y = deaths), na.rm = TRUE)  + 
@@ -71,9 +132,77 @@ cases %>%
     panel.grid.major = element_line(color="grey40", size=0.5),
     panel.background = element_rect(fill="snow2")
   ) +
-  ggtitle("Deaths from COVID-19 for selected western states in the United States") +
-  labs(x = "Date", y = "Deaths", color = "State")
+  labs(
+    title = "Cumulative deaths from COVID-19",
+    subtitle = "for selected western states in the United States",
+    x = "Date", 
+    y = "Cumulative Deaths", 
+    color = "State"
+  )
 ```
+
+### Cumulative deaths per comparable unit of population
+```{r deaths_by_state_per_unit, echo = FALSE, message = FALSE}
+population_unit = 100000
+cases %>%
+  dplyr::filter(
+    state %in% states_to_compare,
+    date > lubridate::ymd("2020-02-20")) %>%
+  dplyr::mutate(deaths_per_unit = ((deaths / population) * population_unit)) %>%
+  ggplot(aes(x = date, y = deaths_per_unit, color = state)) +
+  geom_point(na.rm = TRUE) +
+  geom_line(aes(y = deaths_per_unit), na.rm = TRUE)  +
+  theme(
+    panel.grid.minor = element_line(color = "grey60", size = 0.5),
+    panel.grid.major = element_line(color = "grey40", size = 0.5),
+    panel.background = element_rect(fill = "snow2")
+  ) +
+  labs(
+    title = glue(
+      "Cumulative deaths per ",
+      format(population_unit, scientific=FALSE, big.mark=","),
+      " population from COVID-19"
+    ),
+    subtitle = "for selected western states in the United States",
+    x = "Date", 
+    y = glue(
+      "Cumulative Deaths per ", 
+      format(population_unit, scientific=FALSE, big.mark=",")
+    ), 
+    color = "State"
+  )
+```
+
+### Daily number of deaths
+Plot of number of deaths per day per state in the United States for a few select states.
+
+```{r daily_deaths_by_state, echo = FALSE, message = FALSE}
+cases %>%
+  dplyr::filter(
+    state %in% states_to_compare, 
+    date > lubridate::ymd("2020-02-20")
+  ) %>% 
+  dplyr::arrange(date) %>% 
+  dplyr::group_by(state) %>% 
+  dplyr::mutate(daily_deaths = (deaths - dplyr::lag(deaths))) %>% 
+  dplyr::filter(daily_deaths >= 0) %>% 
+  ggplot(aes(x = date, y = daily_deaths, color = state)) +
+    geom_point(na.rm = TRUE) +
+    geom_line(aes(y = daily_deaths), na.rm = TRUE)  + 
+    theme(
+      panel.grid.minor = element_line(color="grey60", size=0.5),
+      panel.grid.major = element_line(color="grey40", size=0.5),
+      panel.background = element_rect(fill="snow2")
+    ) +
+    labs(
+      title = "Daily deaths from COVID-19",
+      subtitle = "for selected western states in the United States",
+      x = "Date", 
+      y = "Deaths", 
+      color = "State"
+    )
+```
+
 
 ## Mortality by state
 Plot of percentage of deaths per state, calculated as (deaths / cases) * 100.
@@ -101,6 +230,10 @@ cases %>%
   dplyr::mutate(pct_bin = floor(pct)) %>% 
   ggplot(aes(x = pct_bin, y = stat(count))) +
     geom_bar() +
-    ggtitle("Distribution of mortality rates in states in the United States") +
-    labs(x = "Percentage of deaths for confirmed cases", y = "Number of states")
+    labs(
+      title = "Distribution of mortality rates",
+      subtitle = "in states in the United States",
+      x = "Percentage of deaths for confirmed cases", 
+      y = "Number of states"
+    )
 ```
