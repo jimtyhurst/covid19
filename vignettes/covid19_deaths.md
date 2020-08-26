@@ -1,7 +1,7 @@
 COVID-19 Deaths
 ================
 [Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)
-2020-08-26
+<br>2020-08-26
 
 [Source code](./covid19_deaths.Rmd).
 

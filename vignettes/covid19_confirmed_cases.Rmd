@@ -1,13 +1,13 @@
 ---
 title: "COVID-19 Confirmed Cases"
-author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)"
-date: "`r Sys.Date()`"
+author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)  "
+date: "<br>`r Sys.Date()`"
 output:
   github_document:
-    toc: true
+    toc: false
     hard_line_breaks: FALSE
   html_document:
-    toc: true
+    toc: false
     code_folding: hide
 numbersections: true
 vignette: >
