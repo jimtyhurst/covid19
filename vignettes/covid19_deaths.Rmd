@@ -4,10 +4,10 @@ author: "[Jim Tyhurst, Ph.D.](https://www.jimtyhurst.com/)  "
 date: "`r Sys.Date()`"
 output:
   github_document:
-    toc: true
+    toc: false
     hard_line_breaks: FALSE
   html_document:
-    toc: true
+    toc: false
     code_folding: hide
 numbersections: true
 vignette: >
@@ -37,11 +37,11 @@ library(ggplot2)
 deaths <- read_deaths_jhu_csse()
 ```
 
-Plots cumulative number of confirmed cases for a few selected countries. It is easy to tell by the shape of the curve whether the daily number of cases are increasing vs countries where the rate of deaths has decreased.
+Plots cumulative number of confirmed deaths for a few selected countries.
 
 ```{r total_by_country_summary, echo = FALSE, message = FALSE}
 deaths %>%
-  dplyr::filter(country_region %in% c("Czechia", "China", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
+  dplyr::filter(country_region %in% c("Brazil", "Czechia", "China", "France", "Korea, South", "Iran", "Italy", "Spain", "US")) %>% 
   dplyr::group_by(country_region, date) %>% 
   dplyr::summarize(country_total = sum(cumulative_total)) %>% 
   ggplot(aes(x = date, y = country_total, group = country_region, color = country_region)) +
