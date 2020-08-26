@@ -1,6 +1,6 @@
 Package: covid19
 Title: COVID-19 Exploratory Data Analysis
-Version: 0.0.0.9000
+Version: 0.0.1
 Authors@R: 
     person(given = "Jim",
            family = "Tyhurst",
@@ -30,4 +30,4 @@ Suggests:
     utils
 VignetteBuilder: utils
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
